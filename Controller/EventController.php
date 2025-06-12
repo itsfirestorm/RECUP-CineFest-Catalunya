@@ -61,6 +61,12 @@ class EventController
         $eventDate = trim($_POST['eventDate']);
         $trailerVideo = trim($_POST['trailerVideo']);
 
+        if (trim($_POST["status"]) == "not-available") {
+            $status = "false";
+        } else {
+            $status = "true";
+        }
+
         if (empty($title) || empty($eventDate)) {
             $_SESSION["error"] = "Datos inválidos.";
             header("Location: ../View/event.php");
@@ -78,8 +84,8 @@ class EventController
         }
 
         // Insertar nuevo evento
-        $createStmt = $this->conn->prepare("INSERT INTO events (title, genre, synopsis, crew, eventDate, trailerVideo) VALUES (?, ?, ?, ?, ?, ?)");
-        if (!$createStmt->execute([$title, $genre, $synopsis, $crew, $eventDate, $trailerVideo])) {
+        $createStmt = $this->conn->prepare("INSERT INTO events (title, active, genre, synopsis, crew, eventDate, trailerVideo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        if (!$createStmt->execute([$title, $status, $genre, $synopsis, $crew, $eventDate, $trailerVideo])) {
             $_SESSION["error"] = "Hubo un error en crear el evento, acude el equipo administrativo.";
             header("Location: ../View/event.php");
             exit;
