@@ -1,0 +1,259 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/View/files/ttf/UbuntuNerdFont-Regular.ttf');
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+header {
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    width: 100vw;
+    background-color: #646464;
+    height: 45px;
+    box-shadow: rgb(97, 97, 97) 0px 1px 6px;
+    display: block;
+}
+
+#navbar a {
+    text-decoration: none;
+    font-family: Ubuntu;
+    color: white;
+}
+
+#navbar > #nav-left > a {
+    float: left;
+    padding: 12px;
+    transition: 0.2s;
+    font-size: 18px;
+}
+
+#navbar > h1 {
+    font-family: Ubuntu;
+    float: left;
+    padding: 3px;
+    padding-left: 12px;
+    padding-right: 16px;
+    color: #ffffff;
+    font-size: 32px;
+}
+
+.nav-right {
+    float: right;
+    padding: 5px;
+}
+
+#profilebtn {
+    float: right;
+    color: white;
+    padding: 11px;
+    margin-right: 22px;
+}
+
+#showprofile {
+    display: none;
+}
+
+#search-container {
+    margin: 3px;
+    padding: 5px;
+    padding-right: 0px;
+    float: right;
+    margin-right: 12px;
+}
+
+#search-container > input[type=text] {
+    padding: 6px;
+    width: 200px;
+    font-size: 16px;
+    font-family: Ubuntu;
+    color: white;
+    margin-right: -4px;
+    border: none;
+    outline: none;
+    background: #8a8a8a;
+}
+
+#search-container > button {
+    padding: 6px 10px 4px 10px;
+    background: #646464;
+    border-radius: 0px;
+    border: 1px solid #747474;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#search-container > button:hover {
+    background: #747474;
+}
+
+#nav-left > a:hover {
+    background-color: #858585;
+}
+
+.menubtn {
+    font-size: 30px;
+    float: right;
+    padding: 6px;
+    color: white;
+    margin-right: 12px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+#showprofile:checked ~ #user-info {
+    right: 5px;
+}
+
+#showprofile:checked ~ .user-action {
+    display: block;
+}
+
+#user-info {
+    position: fixed;
+    float: right;
+    top: 50px;
+    right: -210px;
+    width: 200px;
+    background-color: #212121;
+    border: 1px solid #646464;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.6s cubic-bezier(.38,.08,0,1.52)
+}
+
+#user-info > a {
+    width: 80%;
+}
+
+#user-info > h1, h3 {
+    font-family: Ubuntu;
+    color: white;
+}
+
+#profile {
+    color: white;
+    align-self: baseline;
+    margin-left: 16px;
+    margin-top: 8px;
+    font-size: 26px;
+}
+
+#not-logged {
+    margin-top: 32px;
+    margin-bottom: 12px;
+    align-self: center;
+    font-size: 16px;
+}
+
+#usr-email {
+    align-self: baseline;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+#user-pfp {
+    width: 64px;
+    height: 64px;
+    margin-top: 22px;
+}
+
+#usr-name {
+    padding-top: 12px;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.user-action {
+    color: white;
+    width: 100%;
+    padding: 5px;
+    background-color: #646464;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    transition: 0.5s;
+}
+
+#user-info > a > button:not(#logout):hover {
+    background-color: #858585;
+    cursor: pointer;
+}
+
+#user-info > a:hover {
+    cursor: default;
+}
+
+#user-info > a:has(button:has(#logout)) {
+    width: fit-content;
+}
+
+#logout {
+    align-self: center;
+    background-color: transparent;
+    margin-top: 14px;
+    margin-left: 21%;
+    width: fit-content;
+}
+
+#logout:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 860px) {
+    #check:checked ~ #nav-left {
+        left: 0px;
+    }
+    
+    #check:checked ~ #search-container {
+        left: 0px;
+    }
+    .menubtn {
+        display: block;
+        margin-top: -4px;
+    }
+
+    header {
+        box-shadow: none;
+    }
+
+    #nav-left {
+        position: fixed;
+        top: 45px;
+        left: -200px;
+        background-color: #646464;
+        width: 200px;
+        height: 100vh;
+        display: flex;
+        transition: all 0.3s;
+        flex-direction: column;
+    }
+
+    #search-container {
+        position: fixed;
+        top: 270px;
+        margin-left: 6px;
+        transition: all 0.3s;
+        left: -200px;
+    }
+
+    #search-container > input[type=text] {
+        width: 160px;
+    }
+
+    #search-container > button {
+        display: none;
+    }
+}

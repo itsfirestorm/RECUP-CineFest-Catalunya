@@ -1,0 +1,207 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../ttf/UbuntuNerdFont-Regular.ttf');
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 60px;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+#user span {
+    color: white;
+    padding: 11px;
+    cursor: pointer;
+}
+
+#profile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar {
+    width: 250px;
+    padding: 30px;
+    border-right: 1px solid #eee;
+}
+
+#sidebar h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar li {
+    margin-bottom: 15px;
+}
+
+#sidebar li a {
+    display: inline-block;
+    position: relative;
+    color: #555;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.2s;
+    padding-bottom: 4px;
+}
+
+#sidebar li a:not(.active)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #aaaaaa;
+    transition: width 0.2s ease-in;
+}
+
+#sidebar li a:not(.active):hover::after {
+    width: 100%;
+}
+
+.active {
+    font-weight: 800;
+}
+
+#content {
+    flex: 1;
+    padding: 30px;
+}
+
+#welcome-section h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.profile-section {
+    margin-bottom: 40px;
+}
+
+.profile-section h2 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.inputbox {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    background-color: #f9f9f9;
+    transition: all 0.2s;
+}
+
+.inputbox:focus {
+    border-color: #646464;
+    outline: none;
+    background-color: white;
+}
+
+select.inputbox {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+#save-btn {
+    padding: 14px 25px;
+    background-color: #646464;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#save-btn:hover {
+    background-color: #555;
+}
+
+#error {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    text-align: center;
+}
+
+#success {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #53a942;
+  background-color: #def2df;
+  border-color: #ccebcc;
+  text-align: center;
+}
+
+#del-btn {
+    padding: 14px 25px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#del-btn:hover {
+    background-color: #c50000;
+}
+@media (max-width: 768px) {
+    #profile-container {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+}
