@@ -61,7 +61,7 @@ class UserController
         $email = $_POST['email'];
         $inputPassword = $_POST['password'];
 
-        $stmt = $this->conn->prepare("SELECT id, name, userrole, email, password FROM users WHERE email = ?");
+        $stmt = $this->conn->prepare("SELECT id, name, userrole, email, phonenumber, password FROM users WHERE email = ?");
 
         if (!$stmt->execute([$email])) {
             $_SESSION["error"] = "Error en la consulta";
@@ -89,6 +89,7 @@ class UserController
         $_SESSION['id'] = $user['id'];
         $_SESSION['username'] = $user['name'];
         $_SESSION['email'] = $user['email'];
+        $_SESSION['phonenumber'] = $user['phonenumber'];
         $_SESSION['user_role'] = $user['userrole'];
 
         // Get redirect safely and make sure relative path is valid
@@ -108,9 +109,10 @@ class UserController
         $email = trim($_POST['email']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $date = date("Y-m-d");
+        $phonenumber = trim($_POST['phonenumber']);
         $userrole = "user";
 
-        if (empty($username) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (empty($username) || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($phonenumber)) {
             $_SESSION["error"] = "Datos inválidos.";
             header("Location: ../View/sign_in.php");
             exit;
@@ -127,8 +129,8 @@ class UserController
         }
 
         // Insertar nuevo usuario
-        $stmt = $this->conn->prepare("INSERT INTO users (name, email, password, userrole, creation_date) VALUES (?, ?, ?, ?, ?)");
-        if (!$stmt->execute([$username, $email, $password, $userrole, $date])) {
+        $stmt = $this->conn->prepare("INSERT INTO users (name, email, phonenumber, password, userrole, creation_date) VALUES (?, ?, ?, ?, ?, ?)");
+        if (!$stmt->execute([$username, $email, $phonenumber, $password, $userrole, $date])) {
             $_SESSION["error"] = "Error al crear la cuenta.";
             header("Location: ../View/sign_in.php");
             exit;
@@ -209,21 +211,22 @@ class UserController
     public function updateProfile(): void
     {
         $newName = trim($_POST["name"]);
+        $newNumber = trim($_POST["phonenumber"]);
 
-        if (empty($newName)) {
+        if (empty($newName) || empty($newNumber)) {
             $_SESSION["error"] = "Datos invalidos.";
             header("../View/profile.php");
             exit;
         }
 
-        $updateStmt = $this->conn->prepare("UPDATE users SET name = ? WHERE id = ?");
-        if (!$updateStmt->execute([$newName, $_SESSION["id"]])) {
+        $updateStmt = $this->conn->prepare("UPDATE users SET name = ?, phonenumber = ? WHERE id = ?");
+        if (!$updateStmt->execute([$newName, $newNumber, $_SESSION["id"]])) {
             $_SESSION["error"] = "Ha habido un error al actualizar el usuario, contacte un administrador.";
             header("Location: ../View/profile.php");
             exit;
         }
 
-        $readStmt = $this->conn->prepare("SELECT name, email FROM users WHERE id = ?");
+        $readStmt = $this->conn->prepare("SELECT name, phonenumber FROM users WHERE id = ?");
 
         if (!$readStmt->execute([$_SESSION["id"]])) {
             $_SESSION["error"] = "Error en la consulta";
@@ -240,6 +243,7 @@ class UserController
 
         // Update session variables to accomodate new values.
         $_SESSION["username"] = $user["name"];
+        $_SESSION["phonenumber"] = $user["phonenumber"];
         $_SESSION["success"] = "Perfil actualizado correctamente!";
         header("Location: ../View/profile.php");
         exit;

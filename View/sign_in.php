@@ -41,6 +41,14 @@
                     <input class="inputbox" type="email" name="email" required>
                 </div>
 
+                <!-- NÚMERO DE TELÉFONO -->
+                <label for="phonenumber">
+                    <h2>Teléfono móvil:</h2>
+                </label>
+                <div class="TextBox">
+                    <input class="inputbox" type="tel" name="phonenumber" required>
+                </div>
+
                 <!-- CONTRASEÑA -->
                 <label for="password">
                     <h2>Contraseña:</h2>
