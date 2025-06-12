@@ -94,6 +94,10 @@ $redirect = $_SERVER["REQUEST_URI"];
                             <input type="text" id="nombre" class="inputbox" name="name" value="' . $_SESSION["username"] . '">
                         </div>
 
+                        <div class="form-group">
+                            <label for="phonenumber">Teléfono móvil:</label>
+                            <input type="tel" id="phonenumber" class="inputbox" name="phonenumber" value="' . $_SESSION["phonenumber"] . '">
+                        </div>
                         <button type="submit" id="save-btn" name="update-profile">Guardar Cambios</button>
                     </form>
                 </div>
