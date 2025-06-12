@@ -90,6 +90,14 @@ $resultsCount = count($events);
                     </div>
 
                     <div class="form-group">
+                        <label for="status">🛑 Estado</label>
+                        <select name="status">
+                            <option value="available">Available</option>
+                            <option value="not-available">Not Available</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="genre">🎭 Género</label>
                         <input type="text" id="genre" name="genre" required placeholder="Ej: Drama">
                     </div>
